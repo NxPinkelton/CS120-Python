@@ -1,6 +1,6 @@
 """Turn Based Combat System
 We'll define Character class and a fight function, as well as a print stats function"""
-# Theorized issue. For some of these attributes that need integers, I'm not sure if they'll be recognized? maybe type in gets int(randomnum) type john
+
 
 import random
 
