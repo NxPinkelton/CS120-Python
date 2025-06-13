@@ -106,52 +106,49 @@ class Character(object):
 def fight(self, Character):
     sHealth = self.hitPoints
     cHealth = Character.hitPoints
-    keepGoing = True
-    while keepGoing:
-        input("Press 'ENTER' to continue")
-        sDiceRoll = random.randint(0, 100)
-        if sDiceRoll <= self.hitChance:
-            sDamage = random.randint(1, self.maxDamage)
-            sDamage = sDamage - Character.armor
-            if sDamage <= 0:
-                print("")
-                print(f"{Character.name} blocked {self.name}'s attack with it's armor!")
-            else:
-                cHealth = cHealth - sDamage
-                print("")
-                print(f"{self.name} hit {Character.name} for {sDamage} damage!")
-        else:
+    sDiceRoll = random.randint(0, 100)
+    if sDiceRoll <= self.hitChance:
+        sDamage = random.randint(1, self.maxDamage)
+        sDamage = sDamage - Character.armor
+        if sDamage <= 0:
             print("")
-            print(f"{self.name} missed their attack!")
-        
-        cDiceRoll = random.randint(0, 100)
-        if cDiceRoll <= Character.hitChance:
-            cDamage = random.randint(1, Character.maxDamage)
-            cDamage = cDamage - self.armor
-            if cDamage <= 0:
-                print("")
-                print(f"{self.name} blocked {Character.name}'s attack with it's armor!")
-            else:
-                sHealth = sHealth - cDamage
-                print("")
-                print(f"{Character.name} hit {self.name} for {cDamage} damage!")
+            print(f"{Character.name} blocked {self.name}'s attack with it's armor!")
         else:
+            cHealth = cHealth - sDamage
             print("")
-            print(f"{Character.name} missed their attack!")
-        
+            print(f"{self.name} hit {Character.name} for {sDamage} damage!")
+    else:
         print("")
-        print(f"{self.name}'s Health: {sHealth}")
-        print(f"{Character.name}'s Health: {cHealth}")
-        print("")
+        print(f"{self.name} missed their attack!")
         
-        if sHealth <= 0:
-            print(f"{self.name} has fallen! {Character.name} wins the battle!")
-            keepGoing = False
-        if cHealth <= 0:
-            print(f"{Character.name} has fallen! {self.name} wins the battle!")
-            keepGoing = False
-        elif sHealth <= 0 and cHealth <= 0:
-            print(f"Both {self.name} and {Character.name} have fallen! The battle ends in a Draw.")
+    cDiceRoll = random.randint(0, 100)
+    if cDiceRoll <= Character.hitChance:
+        cDamage = random.randint(1, Character.maxDamage)
+        cDamage = cDamage - self.armor
+        if cDamage <= 0:
+            print("")
+            print(f"{self.name} blocked {Character.name}'s attack with it's armor!")
+        else:
+            sHealth = sHealth - cDamage
+            print("")
+            print(f"{Character.name} hit {self.name} for {cDamage} damage!")
+    else:
+        print("")
+        print(f"{Character.name} missed their attack!")
+        
+    print("")
+    print(f"{self.name}'s Health: {sHealth}")
+    print(f"{Character.name}'s Health: {cHealth}")
+    print("")
+        
+    if sHealth <= 0:
+        print(f"{self.name} has fallen! {Character.name} wins the battle!")
+        
+    if cHealth <= 0:
+        print(f"{Character.name} has fallen! {self.name} wins the battle!")
+        
+    elif sHealth <= 0 and cHealth <= 0:
+        print(f"Both {self.name} and {Character.name} have fallen! The battle ends in a Draw.")
             
         
 
